@@ -1,26 +1,45 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import Card from './components/home'
+import Data from './components/data'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Login from './components/login'
+import RegisterBox from './components/register'
+import { Provider } from 'react-redux'
+
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoginOpen: true,
+      isRegisterOpen: false
+    };
+  }
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+     <Router>
+      <div>
+        <Link to="/">login</Link>
+        <Link to="/home">homepage</Link>
+        
+        <Route exact path="/" component={Login} />
+        <Route path="/home" component={Data} />
+      
+      
       </div>
+      
+
+    
+   
+
+    </Router>
+
+    
+
+     
     );
   }
 }
