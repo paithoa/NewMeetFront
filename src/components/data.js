@@ -6,7 +6,7 @@ import axios from 'axios';
 export default class PersonList extends React.Component {
   state = {
     persons: [],
-    loginstatus:false,
+    loginstatus:true,
   }
 
   componentDidMount() {
@@ -22,8 +22,8 @@ export default class PersonList extends React.Component {
 
       axios.get(`https://4f1cbe68.ngrok.io/status`)
       .then(res => {
-        const loginstatus = res.data;
-        console.log(loginstatus)
+        const loginstatus = res.data.status;
+
         this.setState({ loginstatus });
       })
       .catch(err =>{
@@ -32,11 +32,18 @@ export default class PersonList extends React.Component {
   }
 
   render() {
+     if(this.state.loginstatus === true) {
+        return (
+        <ul>
+          { this.state.persons.map(person => <Home person = {person} />)}
+        </ul>)
+     }
+     else{
     return (
       
       <div>
         
-        <Login loginstatus={true}></Login>
+        <Login></Login>
       <hr></hr>
       <ul>
         { this.state.persons.map(person => <Home person = {person} />)}
@@ -44,4 +51,5 @@ export default class PersonList extends React.Component {
       </div>
     )
   }
+}
 }
