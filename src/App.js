@@ -22,11 +22,11 @@ class App extends Component {
     return (
      <Router>
       <div>
-        <Link to="/">login</Link>
-        <Link to="/home">homepage</Link>
+  
+        <Link to="/">homepage</Link>
         
-        <Route exact path="/" component={Login} />
-        <Route path="/home" component={Data} />
+     
+        <Route path="/" component={Data} />
       
       
       </div>
